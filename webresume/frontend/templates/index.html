@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 
 <html lang="en">
@@ -7,33 +8,54 @@
   <title>Insert Title Here</title>
 
 
-  <!-- <link rel="stylesheet" href="style.css"> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 </head>
 
-<body>
-  <h1 id="name">Name</h1>
-  <p id="about">About</p>
-  <p id="education">Education</p>
-  <p id="skills">Skills</p>
-  <p id="work">Work</p>
-  <p id="contact">Contact</p>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script>
-  $(window).on('load', function(){
-     // change the URL to your server URL here
-     $.getJSON("http://162.246.157.107:8000/api/person/1", function (data) {
-          $("#name").text(data.data.attributes.name);
-          $("#about").text(data.data.attributes.about);
-          $("#education").text(data.data.attributes.education);
-          $("#skills").text(data.data.attributes.skills);
-          // Complete consuming the API data and updating the work and contact sections
-          // HINT: look at the above lines, jquery documentation, see what is the object returned
-     
-     
+<body style="background-image: url({% static "images/bg.jpg" %})">
+  <div class="container">
+    <div class="row pt-5">
+      <div class="col-md-8 mx-auto">
+        <div class="card p-3">
+          <div class="card-body">
+            <div class="card-title">
+                <h1 id="name">Name</h1>
+            </div>
+            <div class="card-subtitle mb-2 text-muted"><p id="work">Work</p>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+              <li class="list-group-item"><b>About:</b> <span id="about">About</span></li>
+              <li class="list-group-item"><b>Education:</b> <span id="education">Education</span></li>
+              <li class="list-group-item"><b>Skills:</b> <span id="skills">Skills</span></li>
+              <li class="list-group-item"><b>Contact:</b> <span id="contact">Contact</span></li>
+            </ul>
+        </div>
+        </div>
+    </div>
 
-     });
-  });
+  </div>
+  <footer class="footer"></footer>
+
+  <script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body>
+
+  <script>
+    $(window).on('load', function(){
+      // change the URL to your server URL here
+      $.getJSON("api/person/1", function (data) {
+            $("#name").text(data.data.attributes.name);
+            $("#about").text(data.data.attributes.about);
+            $("#education").text(data.data.attributes.education);
+            $("#skills").text(data.data.attributes.skills);
+            $("#work").text(data.data.attributes.work);
+            $("#contact").text(data.data.attributes.contact);
+      });
+    });
   </script>
-</body>
+
 </html>
